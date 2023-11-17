@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1, h2 {
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
+        div {
+            margin-bottom: 20px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+        }
+
+        pre code {
+            display: block;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        pre code span {
+            font-weight: bold;
+            color: #008000; /* Green color for keys */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>System Information</h1>
+
+    <h2>CPU Information</h2>
+    <div id="cpu-info"></div>
+
+    <h2>Memory Information</h2>
+    <div id="memory-info"></div>
+
+    <h2>Storage Information</h2>
+    <div id="storage-info"></div>
+
+    <h2>User Information</h2>
+    <div id="users-info"></div>
+
+    <h2>Operating System Information</h2>
+    <div id="os-info"></div>
+
+    <h2>Network Interface Information</h2>
+    <div id="network-info"></div>
+
+    <h2>Graphics Information</h2>
+    <div id="graphics-info"></div>
+
+    <h2>Battery Information</h2>
+    <div id="battery-info"></div>
+
+    <script>
+        function fetchData(url, targetId) {
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const formattedData = JSON.stringify(data, null, 2);
+                    document.getElementById(targetId).innerHTML = `<pre><code>${formattedData}</code></pre>`;
+                });
+        }
+
+        fetchData('/cpu', 'cpu-info');
+        fetchData('/memory', 'memory-info');
+        fetchData('/storage', 'storage-info');
+        fetchData('/users', 'users-info');
+        fetchData('/os', 'os-info');
+        fetchData('/network', 'network-info');
+        fetchData('/graphics', 'graphics-info');
+        fetchData('/battery', 'battery-info');
+    </script>
+</body>
+
+</html>
